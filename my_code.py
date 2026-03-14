@@ -29,3 +29,16 @@ def test_fix_phone_num_non_digits():
         fix_phone_num("334dfdee45")
     with pytest.raises(ValueError):
         fix_phone_num("abcdefghij")
+        
+def fix_phone_num(phone):
+    """
+    Fixed version: strips special characters, validates length and digits.
+    """
+    cleaned = phone.replace("-", "").replace("(", "").replace(")", "").replace(" ", "")
+    
+    if len(cleaned) != 10:
+        raise ValueError("Phone number must be 10 digits")
+    if not cleaned.isdigit():
+        raise ValueError("Phone number must contain only digits")
+    
+    return cleaned
