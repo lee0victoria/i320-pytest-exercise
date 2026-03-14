@@ -22,3 +22,10 @@ def test_fix_phone_num_too_long_or_misformatted():
         fix_phone_num("555-442-98761")
     with pytest.raises(ValueError):
         fix_phone_num("(3213) 654 3333")
+        
+def test_fix_phone_num_non_digits():
+    import pytest
+    with pytest.raises(ValueError):
+        fix_phone_num("334dfdee45")
+    with pytest.raises(ValueError):
+        fix_phone_num("abcdefghij")
